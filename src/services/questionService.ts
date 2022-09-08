@@ -16,6 +16,10 @@ async function get() {
 async function getById(id: string) {
     const questionWithAnswers = await questionRepository.getById(id);
 
+    if (!questionWithAnswers) {
+        throw { type: 'not_found' };
+    }
+
     return questionWithAnswers;
 }
 

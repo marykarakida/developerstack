@@ -24,11 +24,8 @@ async function get() {
 async function getById(id: string) {
     const result = await prisma.question.findUnique({
         where: { id },
-        select: {
-            id: true,
-            question: true,
-            askedBy: true,
-            Answer: {
+        include: {
+            answers: {
                 select: {
                     answeredBy: true,
                     answer: true,
